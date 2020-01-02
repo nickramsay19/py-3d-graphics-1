@@ -93,20 +93,19 @@ while running:
     ])
 
     # rotate cube
-    fTheta += 1.0 * pygame.time.get_ticks()/60000
+    fTheta += (math.log10(float(pygame.time.get_ticks())))/10
 
     matRotZ = Matrix4x4(matrix = [
-        [ math.cos(fTheta * 0.5),   math.sin(fTheta * 0.5), 0.0, 0.0 ],
-        [ - math.sin(fTheta * 0.5), math.cos(fTheta * 0.5), 0.0, 0.0 ],
-        [ 0.0,                      0.0,                    1.0, 0.0 ],
-        [ 0.0,                      0.0,                    0.0, 1.0 ]
+        [ math.cos(fTheta),   math.sin(fTheta), 0.0, 0.0 ],
+        [ - math.sin(fTheta), math.cos(fTheta), 0.0, 0.0 ],
+        [ 0.0,                0.0,              1.0, 0.0 ],
+        [ 0.0,                0.0,               0.0, 1.0 ]
     ])
     matRotX = Matrix4x4(matrix = [
         [ 1.0, 0.0,                      0.0,                    0.0 ],
         [ 0.0, math.cos(fTheta * 0.5),   math.sin(fTheta * 0.5), 0.0 ],
         [ 0.0, - math.sin(fTheta * 0.5), math.cos(fTheta * 0.5), 0.0 ],
         [ 0.0, 0.0,                      0.0,                    1.0]
-
     ])
     
 
@@ -156,4 +155,3 @@ while running:
 
     # Update the screen
     pygame.display.update()
-    clock.tick(60)
